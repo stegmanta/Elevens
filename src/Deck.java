@@ -19,6 +19,7 @@ public class Deck {
 	 * The next card to be dealt is at size - 1.
 	 */
 	private int size;
+	private int idx;
 
 
 	/**
@@ -30,7 +31,12 @@ public class Deck {
 	 * @param values is an array containing all of the card point values.
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		this.cards = new ArrayList();
+
+		for(idx = 0; idx < ranks.length; idx++){
+			Card card = new Card(ranks[idx],suits[idx],values[idx]);
+			System.out.println(card);
+		}
 	}
 
 
@@ -39,7 +45,12 @@ public class Deck {
 	 * @return true if this deck is empty, false otherwise.
 	 */
 	public boolean isEmpty() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		if(idx == 0){
+			return true;
+		}else{
+			return false;
+		}
+		
 	}
 
 	/**
@@ -47,7 +58,7 @@ public class Deck {
 	 * @return the number of undealt cards in this deck.
 	 */
 	public int size() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		return idx;
 	}
 
 	/**
@@ -64,7 +75,11 @@ public class Deck {
 	 *         previously dealt.
 	 */
 	public Card deal() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		this.size = this.size - 1;
+        if (this.size > 0) {
+            return this.cards.get(this.size);
+        }
+        return null;
 	}
 
 	/**
