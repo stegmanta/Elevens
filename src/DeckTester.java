@@ -51,6 +51,11 @@ public class DeckTester {
 		System.out.println();
 		System.out.println();
 
-		/* *** TO BE COMPLETED IN ACTIVITY 4 *** */
+		int SHUFFLE_COUNT = 5;
+		System.out.println("**** Shuffle the entire Deck ****");
+		System.out.println(d.shuffle());
+		System.out.println();
+		System.out.println();
+
 	}
 }
