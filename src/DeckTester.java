@@ -51,11 +51,21 @@ public class DeckTester {
 		System.out.println();
 		System.out.println();
 
-		int SHUFFLE_COUNT = 5;
-		System.out.println("**** Shuffle the entire Deck ****");
-		System.out.println(d.shuffle());
-		System.out.println();
-		System.out.println();
+		int SHUFFLE_COUNT = 8;
+
+		String[] bRanks = {"Cow","Joker","JacK","Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10"};//
+		String[] bSuits = {"Spades","Clubs", "Diamonds", "Hearts"};//
+		int[] bValues = {100,50,11,1,2,3,4,5,6,7,8,9,10};//represents a deck of 52
+		Deck b = new Deck(bRanks, bSuits, bValues);
+		System.out.println(b.shuffle());
+
+		// need to implement the too string but I'm lost and I don't know what to do
+
+		
+
+
+		
 
 	}
+	
 }
