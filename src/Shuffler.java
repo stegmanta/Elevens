@@ -1,13 +1,14 @@
 /**
  * This class provides a convenient way to test shuffling methods.
  */
+import java.util.Random;
 public class Shuffler {
 
 	/**
 	 * The number of consecutive shuffle steps to be performed in each call
 	 * to each sorting procedure.
 	 */
-	private static final int SHUFFLE_COUNT = 1;
+	private static final int SHUFFLE_COUNT = 8;
 
 
 	/**
@@ -19,27 +20,27 @@ public class Shuffler {
 								 " consecutive perfect shuffles:");
 		int[] values1 = {0, 1, 2, 3};
 		for (int j = 1; j <= SHUFFLE_COUNT; j++) {
-			perfectShuffle(values1);
+			int[] shuffled = perfectShuffle(values1);
 			System.out.print("  " + j + ":");
-			for (int k = 0; k < values1.length; k++) {
-				System.out.print(" " + values1[k]);
+			for (int k = 0; k < shuffled.length; k++) {
+				System.out.print(" " + shuffled[k]);
 			}
 			System.out.println();
 		}
-		System.out.println();
+		// System.out.println();
 
-		System.out.println("Results of " + SHUFFLE_COUNT +
-								 " consecutive efficient selection shuffles:");
-		int[] values2 = {0, 1, 2, 3};
-		for (int j = 1; j <= SHUFFLE_COUNT; j++) {
-			selectionShuffle(values2);
-			System.out.print("  " + j + ":");
-			for (int k = 0; k < values2.length; k++) {
-				System.out.print(" " + values2[k]);
-			}
-			System.out.println();
-		}
-		System.out.println();
+		// System.out.println("Results of " + SHUFFLE_COUNT +
+		// 						 " consecutive efficient selection shuffles:");
+		// int[] values2 = {0, 1, 2, 3};
+		// for (int j = 1; j <= SHUFFLE_COUNT; j++) {
+		// 	selectionShuffle(values2);
+		// 	System.out.print("  " + j + ":");
+		// 	for (int k = 0; k < values2.length; k++) {
+		// 		System.out.print(" " + values2[k]);
+		// 	}
+		// 	System.out.println();
+		// }
+		// System.out.println();
 	}
 
 
@@ -49,8 +50,25 @@ public class Shuffler {
 	 * the cards in one half with the cards in the other.
 	 * @param values is an array of integers simulating cards to be shuffled.
 	 */
-	public static void perfectShuffle(int[] values) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
+	public static int[] perfectShuffle(int[] values) {
+		int[] shuffled = new int[values.length + 1];
+		int k = 0;
+		for(int j = 0; j < (values.length + 1) / 2; j++){
+			// System.out.println(values[j]);
+			shuffled[k] = values[j];
+			k = k+2;
+			// System.out.println(k);
+		}
+		k = 1;
+		// System.out.println((values.length + 1) / 2);
+		for(int j = (values.length + 1) / 2; j < values.length; j++){
+			shuffled[k] = values[j];
+			k = k+2;
+			// System.out.println(k);
+		}
+		return shuffled;
+		
+
 	}
 
 	/**
@@ -65,6 +83,15 @@ public class Shuffler {
 	 * @param values is an array of integers simulating cards to be shuffled.
 	 */
 	public static void selectionShuffle(int[] values) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
+		int[] shuffled = new int[52];
+		Random rand = new Random();
+		for(int k = 0; k <= 51; k++){
+			int j = rand.nextInt(52);
+			
+			if(values[j] != 0){
+				values[j] = shuffled[k];
+				values = new int[0];
+			}
+		}
 	}
 }
