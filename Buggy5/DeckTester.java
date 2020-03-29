@@ -9,8 +9,8 @@ public class DeckTester {
 	 *	@param args is not used.
 	 */
 	public static void main(String[] args) {
-		test1CardDeck();
 		test2CardDeck();
+		test1CardDeck();
 		testShuffle();
 		System.out.println("All tests passed!");
 	}
@@ -129,7 +129,7 @@ public class DeckTester {
 		assert d1.size() == d2.size() : "Deck d1 size of " + d1.size()
 			+ " does not match deck d2 size of " + d2.size() + ".";
 
-		boolean allMatch = true;
+		boolean allMatch = false;
 		while (!d1.isEmpty()) {
 			Card c1 = d1.deal();
 			Card c2 = d2.deal();
