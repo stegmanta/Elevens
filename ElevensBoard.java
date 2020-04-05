@@ -74,10 +74,10 @@ public class ElevensBoard extends Board {
 		List<Integer> i = cardIndexes();
 		if(containsPairSum11(i) || containsJQK(i)){
 			return true;
-		}else if(containsPairSum11(i) && containsJQK(i)){
-			return true;
+		}else{
+			return false;
 		}
-		return false;
+		
 	}
 
 	/**
@@ -89,10 +89,14 @@ public class ElevensBoard extends Board {
 	 *              contain an 11-pair; false otherwise.
 	 */
 	private boolean containsPairSum11(List<Integer> selectedCards) {
-		for(int j = 0; j <= selectedCards.size(); j++){//looping through every other card in selected cards
-			for( int i = j + 1; i <= selectedCards.size(); i++){
+
+		for(int j = 0; j < selectedCards.size() - 1; j++){//looping through every other card in selected cards
+		// System.out.print(selectedCards.size());
+		// System.out.println(j);
+		// System.out.println(cardAt(selectedCards.get(j)));
+			for(int i = j + 1; i < selectedCards.size(); i++){
 				if(cardAt(selectedCards.get(j)).pointValue() + cardAt(selectedCards.get(i)).pointValue() == 11){//checking if the card at i and j position combined is equal to eleven
-					return true;
+				return true;
 				}
 			}
 		}
@@ -112,11 +116,7 @@ public class ElevensBoard extends Board {
 		boolean aKing = false;
 		boolean aQueen = false;
 
-		if(selectedCards.size() < 3){
-			return false;
-		}
-
-		for(int j = 0; j <= selectedCards.size(); j++){
+		for(int j = 0; j < selectedCards.size() - 1; j++){
 			if(cardAt(selectedCards.get(j)).rank().equals("jack")){
 				aJack = true;
 			}
