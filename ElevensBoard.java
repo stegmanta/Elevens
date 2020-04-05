@@ -53,7 +53,12 @@ public class ElevensBoard extends Board {
 	 */
 	@Override
 	public boolean isLegal(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		if(selectedCards.size() == 2){
+			return containsPairSum11(selectedCards);
+		}else if(selectedCards.size() == 3){
+			return containsJQK(selectedCards);
+		}
+			return false;
 	}
 
 	/**
@@ -66,7 +71,13 @@ public class ElevensBoard extends Board {
 	 */
 	@Override
 	public boolean anotherPlayIsPossible() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		List<Integer> i = cardIndexes();
+		if(containsPairSum11(i) || containsJQK(i)){
+			return true;
+		}else if(containsPairSum11(i) && containsJQK(i)){
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -78,7 +89,14 @@ public class ElevensBoard extends Board {
 	 *              contain an 11-pair; false otherwise.
 	 */
 	private boolean containsPairSum11(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		for(int j = 0; j <= selectedCards.size(); j++){//looping through every other card in selected cards
+			for( int i = j + 1; i <= selectedCards.size(); i++){
+				if(cardAt(selectedCards.get(j)).pointValue() + cardAt(selectedCards.get(i)).pointValue() == 11){//checking if the card at i and j position combined is equal to eleven
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -90,6 +108,28 @@ public class ElevensBoard extends Board {
 	 *              include a jack, a queen, and a king; false otherwise.
 	 */
 	private boolean containsJQK(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		boolean aJack = false;
+		boolean aKing = false;
+		boolean aQueen = false;
+
+		if(selectedCards.size() < 3){
+			return false;
+		}
+
+		for(int j = 0; j <= selectedCards.size(); j++){
+			if(cardAt(selectedCards.get(j)).rank().equals("jack")){
+				aJack = true;
+			}
+			if(cardAt(selectedCards.get(j)).rank().equals("king")){
+				aKing = true;
+			}
+			if(cardAt(selectedCards.get(j)).rank().equals("queen")){
+				aQueen = true;
+			}
+		}
+		if(aJack && aKing && aQueen){
+			return true;
+		}
+		return false;
 	}
 }
